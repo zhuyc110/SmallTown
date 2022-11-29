@@ -2,8 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SmallTown.Config;
+using SmallTown.Extension;
 using SmallTown.GameSystem;
-using System;
 
 var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 var settings = config.GetRequiredSection("World").Get<Settings>();
@@ -19,6 +19,9 @@ hostBuilder.ConfigureServices(services =>
 {
     // DI injections
     services.AddSingleton(settings);
+    services.AddSingleton<IGameObjectManager, GameObjectManager>();
+    services.AddSingleton<ISmallTownOutput, DefaultSmallTownOutput>();
+
     services.AddHostedService<World>();
 });
 

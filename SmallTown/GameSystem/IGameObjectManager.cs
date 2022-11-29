@@ -4,6 +4,8 @@ namespace SmallTown.GameSystem
 {
     public interface IGameObjectManager
     {
-        IReadOnlyCollection<IGameObject> GameObjects { get; }
+        ICollection<IGameObject> GameObjects { get; }
+
+        Guid RegisterGameObject(IGameObject gameObject);
     }
 }

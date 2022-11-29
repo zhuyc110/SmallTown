@@ -1,4 +1,4 @@
-﻿namespace SmallTown.EntityType
+﻿namespace SmallTown.Entity
 {
     /// <summary>
     /// The type of entity.
@@ -8,11 +8,11 @@
         /// <summary>
         /// Gets the id of the type.
         /// </summary>
-        public Guid Id { get; init; }
+        public Guid Id { get; }
 
         /// <summary>
         /// Gets the name of the type.
         /// </summary>
-        public string Name { get; init; }
-    }
+        public string Name { get; }
+  }
 }

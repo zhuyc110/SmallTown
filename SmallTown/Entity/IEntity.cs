@@ -1,6 +1,4 @@
-﻿using SmallTown.EntityType;
-
-namespace SmallTown.Entity
+﻿namespace SmallTown.Entity
 {
     /// <summary>
     ///   Basic of every entity.

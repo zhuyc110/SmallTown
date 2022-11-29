@@ -1,16 +1,21 @@
 ﻿using Microsoft.Extensions.Hosting;
 using SmallTown.Config;
+using SmallTown.Extension;
 
 namespace SmallTown.GameSystem
 {
-    public sealed class World : BackgroundService
+    internal sealed class World : BackgroundService
     {
         private readonly IGameObjectManager _gameObjectManager;
         private readonly Settings _settings;
+        private readonly ISmallTownOutput _smallTownOutput;
 
-        public World(IGameObjectManager gameObjectManager, Settings settings)
+        private bool _initialized;
+
+        public World(IGameObjectManager gameObjectManager, ISmallTownOutput smallTownOutput, Settings settings)
         {
             _gameObjectManager = gameObjectManager;
+            _smallTownOutput = smallTownOutput;
             _settings = settings;
         }
 
@@ -22,6 +27,9 @@ namespace SmallTown.GameSystem
             {
                 await gameObject.StartAsync();
             }
+
+            _smallTownOutput.Print($"The world initialized at {DateTime.Now:HH:mm:ss}");
+            _initialized = true;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -29,6 +37,13 @@ namespace SmallTown.GameSystem
             while (!stoppingToken.IsCancellationRequested)
             {
                 await Task.Delay(_settings.FrameInterval, stoppingToken);
+
+                if (!_initialized)
+                {
+                    continue;
+                }
+
+                _smallTownOutput.Print($"The world updated at {DateTime.Now:HH:mm:ss}");
 
                 foreach (var gameObject in _gameObjectManager.GameObjects)
                 {
