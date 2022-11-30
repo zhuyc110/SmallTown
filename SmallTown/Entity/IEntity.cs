@@ -1,12 +1,18 @@
-﻿namespace SmallTown.Entity
+﻿using SmallTown.Entity.Component;
+using SmallTown.GameSystem;
+using System.Numerics;
+
+namespace SmallTown.Entity
 {
     /// <summary>
     ///   Basic of every entity.
     /// </summary>
-    public interface IEntity
+    public interface IEntity : IGameObject
     {
-        public Guid Id { get; }
+        public EntityType EntityType { get; }
 
-        public IEntityType EntityType { get; }
+        public Vector2 Location { get; }
+
+        public IReadOnlyCollection<IComponent> Components { get; }
     }
 }

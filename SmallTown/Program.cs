@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SmallTown.Config;
+using SmallTown.Entity.ComponentManager;
 using SmallTown.Extension;
 using SmallTown.GameSystem;
 
@@ -21,8 +22,10 @@ hostBuilder.ConfigureServices(services =>
     services.AddSingleton(settings);
     services.AddSingleton<IGameObjectManager, GameObjectManager>();
     services.AddSingleton<ISmallTownOutput, DefaultSmallTownOutput>();
+    services.AddSingleton<IDirector, Director>();
+    services.AddSingleton<IMovementComponentManager, MovementComponentManager>();
 
-    services.AddHostedService<World>();
+    services.AddHostedService<GameTicker>();
 });
 
 using var host = hostBuilder.Build();

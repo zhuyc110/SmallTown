@@ -4,26 +4,30 @@ using SmallTown.Extension;
 
 namespace SmallTown.GameSystem
 {
-    internal sealed class World : BackgroundService
+    internal sealed class GameTicker : BackgroundService
     {
         private readonly IGameObjectManager _gameObjectManager;
         private readonly Settings _settings;
+        private readonly IDirector _director;
         private readonly ISmallTownOutput _smallTownOutput;
 
         private bool _initialized;
 
-        public World(IGameObjectManager gameObjectManager, ISmallTownOutput smallTownOutput, Settings settings)
+        public GameTicker(IGameObjectManager gameObjectManager, ISmallTownOutput smallTownOutput, Settings settings, IDirector director)
         {
             _gameObjectManager = gameObjectManager;
             _smallTownOutput = smallTownOutput;
             _settings = settings;
+            _director = director;
         }
 
         public override async Task StartAsync(CancellationToken cancellationToken)
         {
             await base.StartAsync(cancellationToken);
 
-            foreach (var gameObject in _gameObjectManager.GameObjects)
+            await _director.StartAsync();
+
+            foreach (var gameObject in _gameObjectManager.GameObjects.OfType<IInitializableGameObject>())
             {
                 await gameObject.StartAsync();
             }

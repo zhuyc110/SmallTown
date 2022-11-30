@@ -13,9 +13,18 @@
 
         public Guid RegisterGameObject(IGameObject gameObject)
         {
-            var id = new Guid();
-            _gameObjects.Add(id, gameObject);
-            return id;
+            _gameObjects.Add(gameObject.Id, gameObject);
+            return gameObject.Id;
+        }
+
+        public IGameObject? GetGameObject(Guid gameObjectId)
+        {
+            if (_gameObjects.TryGetValue(gameObjectId, out var result))
+            {
+                return result;
+            }
+
+            return null;
         }
     }
 }

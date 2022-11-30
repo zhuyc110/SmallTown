@@ -2,7 +2,7 @@
 {
     public interface IGameObject
     {
-        Task StartAsync();
+        public Guid Id { get; }
 
         Task UpdateAsync();
     }
