@@ -1,7 +1,7 @@
-﻿using SmallTown.Entity.Component;
+﻿using SmallTown.Function.Framework.Component;
 using System.Numerics;
 
-namespace SmallTown.Entity.ComponentManager
+namespace SmallTown.Function.Framework.ComponentManager
 {
     public interface IMovementComponentManager : IComponentManager<MovementComponent, Vector2>
     {

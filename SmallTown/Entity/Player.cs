@@ -1,39 +1,38 @@
-﻿using SmallTown.Entity.Component;
-using SmallTown.Entity.ComponentManager;
-using SmallTown.Extension;
-using SmallTown.GameSystem;
+﻿using SmallTown.Function;
+using SmallTown.Function.Framework.Component;
+using SmallTown.Function.Framework.ComponentManager;
+using SmallTown.Platform;
 using System.Numerics;
 
 namespace SmallTown.Entity
 {
-    public class Player : IEntity, IInitializableGameObject
+    public class Player : IInitializableGameObject
     {
         private readonly ISmallTownOutput _smallTownOutput;
         private readonly IMovementComponentManager _movementComponentManager;
+        private readonly Vector2 _initLocation;
+
+        private MovementComponent _movement;
 
         public Guid Id { get; }
 
-        public EntityType EntityType { get; }
+        public IReadOnlyCollection<IComponent> Components { get; private set; }
 
-        public IReadOnlyCollection<IComponent> Components { get; }
-
-        public Vector2 Location => Movement.Location;
-
-        private MovementComponent Movement { get; set; }
+        public Vector2 Location => _movement.Location;
 
         public Player(ISmallTownOutput smallTownOutput, IMovementComponentManager movementComponentManager, Vector2 location = default)
         {
             _smallTownOutput = smallTownOutput;
             _movementComponentManager = movementComponentManager;
             Id = Guid.NewGuid();
-            Components = InitComponents(location);
-            EntityType = EntityType.Person;
+            _initLocation = location;
         }
 
         public Task StartAsync()
         {
+            InitComponents();
             _smallTownOutput.Print($"Player starts here: {Location}");
-            Movement.SetVelocity(Vector2.UnitX);
+            _movement.SetVelocity(Vector2.UnitX);
             return Task.CompletedTask;
         }
 
@@ -43,14 +42,13 @@ namespace SmallTown.Entity
             return Task.CompletedTask;
         }
 
-        private IReadOnlyCollection<IComponent> InitComponents(Vector2 location)
+        private void InitComponents()
         {
-            Movement = _movementComponentManager.Create(location);
-            var result = new List<IComponent>
+            _movement = _movementComponentManager.Create(_initLocation);
+            Components= new List<IComponent>
             {
-                Movement
+                _movement
             };
-            return result;
         }
     }
 }

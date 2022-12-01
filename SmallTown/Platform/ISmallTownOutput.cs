@@ -1,4 +1,4 @@
-﻿namespace SmallTown.Extension
+﻿namespace SmallTown.Platform
 {
     public interface ISmallTownOutput
     {

@@ -2,9 +2,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SmallTown.Config;
-using SmallTown.Entity.ComponentManager;
-using SmallTown.Extension;
-using SmallTown.GameSystem;
+using SmallTown.Function;
+using SmallTown.Function.Framework.ComponentManager;
+using SmallTown.Platform;
 
 var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 var settings = config.GetRequiredSection("World").Get<Settings>();

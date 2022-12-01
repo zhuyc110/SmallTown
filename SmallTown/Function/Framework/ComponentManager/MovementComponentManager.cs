@@ -1,7 +1,7 @@
-﻿using SmallTown.Entity.Component;
+﻿using SmallTown.Function.Framework.Component;
 using System.Numerics;
 
-namespace SmallTown.Entity.ComponentManager
+namespace SmallTown.Function.Framework.ComponentManager
 {
     public class MovementComponentManager : IMovementComponentManager
     {
@@ -10,10 +10,7 @@ namespace SmallTown.Entity.ComponentManager
         public MovementComponentManager()
         {
             _components = new HashSet<MovementComponent>();
-            Id = Guid.NewGuid();
         }
-
-        public Guid Id { get; }
 
         public IReadOnlyCollection<MovementComponent> GetComponents()
         {

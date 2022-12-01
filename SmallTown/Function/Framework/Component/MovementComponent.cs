@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace SmallTown.Entity.Component
+namespace SmallTown.Function.Framework.Component
 {
     public class MovementComponent : IComponent
     {

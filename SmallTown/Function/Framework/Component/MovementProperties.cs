@@ -1,4 +1,4 @@
-﻿namespace SmallTown.Entity.Component
+﻿namespace SmallTown.Function.Framework.Component
 {
     public class MovementProperties
     {

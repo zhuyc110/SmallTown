@@ -1,24 +1,31 @@
 ﻿using Microsoft.Extensions.Hosting;
 using SmallTown.Config;
-using SmallTown.Extension;
+using SmallTown.Function.Framework.ComponentManager;
+using SmallTown.Platform;
 
-namespace SmallTown.GameSystem
+namespace SmallTown.Function
 {
     internal sealed class GameTicker : BackgroundService
     {
         private readonly IGameObjectManager _gameObjectManager;
-        private readonly Settings _settings;
         private readonly IDirector _director;
         private readonly ISmallTownOutput _smallTownOutput;
+        private readonly IMovementComponentManager _movementComponentManager;
+        private readonly Settings _settings;
 
         private bool _initialized;
 
-        public GameTicker(IGameObjectManager gameObjectManager, ISmallTownOutput smallTownOutput, Settings settings, IDirector director)
+        public GameTicker(IGameObjectManager gameObjectManager, 
+            ISmallTownOutput smallTownOutput,
+            IMovementComponentManager movementComponentManager,
+            IDirector director,
+            Settings settings)
         {
             _gameObjectManager = gameObjectManager;
             _smallTownOutput = smallTownOutput;
-            _settings = settings;
+            _movementComponentManager = movementComponentManager;
             _director = director;
+            _settings = settings;
         }
 
         public override async Task StartAsync(CancellationToken cancellationToken)
@@ -49,6 +56,7 @@ namespace SmallTown.GameSystem
 
                 _smallTownOutput.Print($"The world updated at {DateTime.Now:HH:mm:ss}");
 
+                await _movementComponentManager.UpdateAsync();
                 foreach (var gameObject in _gameObjectManager.GameObjects)
                 {
                     await gameObject.UpdateAsync();

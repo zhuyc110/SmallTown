@@ -1,9 +1,9 @@
 ﻿using SmallTown.Entity;
-using SmallTown.Entity.ComponentManager;
-using SmallTown.Extension;
+using SmallTown.Function.Framework.ComponentManager;
+using SmallTown.Platform;
 using System.Numerics;
 
-namespace SmallTown.GameSystem
+namespace SmallTown.Function
 {
     public class Director : IDirector
     {
@@ -20,8 +20,6 @@ namespace SmallTown.GameSystem
 
         public Task StartAsync()
         {
-            _gameObjectManager.RegisterGameObject(_movementComponentManager);
-
             return Task.Run(() =>
             {
                 var user = new Player(_smallTownOutput, _movementComponentManager, new Vector2(4, 2));

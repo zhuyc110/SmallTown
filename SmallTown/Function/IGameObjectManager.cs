@@ -1,6 +1,4 @@
-﻿using SmallTown.Entity;
-
-namespace SmallTown.GameSystem
+﻿namespace SmallTown.Function
 {
     public interface IGameObjectManager
     {
