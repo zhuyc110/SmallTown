@@ -1,4 +1,7 @@
 ﻿using SmallTown.Function.Framework.Component;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SmallTown.Function
 {
@@ -8,6 +11,8 @@ namespace SmallTown.Function
 
         Task UpdateAsync();
 
-        public IReadOnlyCollection<IComponent> Components { get; }
+        public ICollection<IComponent> Components { get; }
+
+        public TComponent? GetComponent<TComponent>() where TComponent : class, IComponent;
     }
 }

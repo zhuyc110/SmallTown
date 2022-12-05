@@ -3,10 +3,11 @@ using SmallTown.Function.Framework.Component;
 using SmallTown.Function.Framework.ComponentManager;
 using SmallTown.Platform;
 using System.Numerics;
+using System.Threading.Tasks;
 
 namespace SmallTown.Entity
 {
-    public class Player : IInitializableGameObject
+    public class Player : GameObjectBase, IInitializableGameObject
     {
         private readonly ISmallTownOutput _smallTownOutput;
         private readonly IMovementComponentManager _movementComponentManager;
@@ -14,17 +15,13 @@ namespace SmallTown.Entity
 
         private MovementComponent _movement;
 
-        public Guid Id { get; }
-
-        public IReadOnlyCollection<IComponent> Components { get; private set; }
-
         public Vector2 Location => _movement.Location;
 
         public Player(ISmallTownOutput smallTownOutput, IMovementComponentManager movementComponentManager, Vector2 location = default)
+            : base()
         {
             _smallTownOutput = smallTownOutput;
             _movementComponentManager = movementComponentManager;
-            Id = Guid.NewGuid();
             _initLocation = location;
         }
 
@@ -36,7 +33,7 @@ namespace SmallTown.Entity
             return Task.CompletedTask;
         }
 
-        public Task UpdateAsync()
+        public override Task UpdateAsync()
         {
             _smallTownOutput.Print($"Player is here: {Location}");
             return Task.CompletedTask;
@@ -45,10 +42,7 @@ namespace SmallTown.Entity
         private void InitComponents()
         {
             _movement = _movementComponentManager.Create(_initLocation);
-            Components= new List<IComponent>
-            {
-                _movement
-            };
+            Components.Add(_movement);
         }
     }
 }
