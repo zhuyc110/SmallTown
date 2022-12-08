@@ -3,7 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SmallTown.Config;
 using SmallTown.Function;
-using SmallTown.Function.Framework.ComponentManager;
+using SmallTown.Function.Framework.GameObject;
+using SmallTown.Function.Framework.World;
 using SmallTown.Platform;
 
 var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
@@ -23,7 +24,6 @@ hostBuilder.ConfigureServices(services =>
     services.AddSingleton<IGameObjectManager, GameObjectManager>();
     services.AddSingleton<ISmallTownOutput, DefaultSmallTownOutput>();
     services.AddSingleton<IDirector, Director>();
-    services.AddSingleton<IMovementComponentManager, MovementComponentManager>();
 
     services.AddHostedService<GameTicker>();
 });

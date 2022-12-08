@@ -1,4 +1,4 @@
-﻿namespace SmallTown.Function
+﻿namespace SmallTown.Function.Framework.World
 {
     public interface IDirector
     {

@@ -1,9 +1,6 @@
 ﻿using SmallTown.Function.Framework.Component;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace SmallTown.Function
+namespace SmallTown.Function.Framework.GameObject
 {
     public interface IGameObject
     {

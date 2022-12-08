@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Hosting;
 using SmallTown.Config;
-using SmallTown.Function.Framework.ComponentManager;
+using SmallTown.Function.Framework.GameObject;
+using SmallTown.Function.Framework.World;
 using SmallTown.Platform;
 
 namespace SmallTown.Function
@@ -10,20 +11,17 @@ namespace SmallTown.Function
         private readonly IGameObjectManager _gameObjectManager;
         private readonly IDirector _director;
         private readonly ISmallTownOutput _smallTownOutput;
-        private readonly IMovementComponentManager _movementComponentManager;
         private readonly Settings _settings;
 
         private bool _initialized;
 
         public GameTicker(IGameObjectManager gameObjectManager, 
             ISmallTownOutput smallTownOutput,
-            IMovementComponentManager movementComponentManager,
             IDirector director,
             Settings settings)
         {
             _gameObjectManager = gameObjectManager;
             _smallTownOutput = smallTownOutput;
-            _movementComponentManager = movementComponentManager;
             _director = director;
             _settings = settings;
         }
@@ -55,8 +53,7 @@ namespace SmallTown.Function
                 }
 
                 _smallTownOutput.Print($"The world updated at {DateTime.Now:HH:mm:ss}");
-
-                await _movementComponentManager.UpdateAsync();
+                
                 foreach (var gameObject in _gameObjectManager.GameObjects)
                 {
                     await gameObject.UpdateAsync();

@@ -1,18 +1,15 @@
-﻿using System.Numerics;
+﻿using SmallTown.Function.Framework.GameObject;
+using System.Numerics;
 
-namespace SmallTown.Function.Framework.Component
+namespace SmallTown.Function.Framework.Component.Movement
 {
-    public class MovementComponent : IComponent
+    public class MovementComponent : ComponentBase
     {
-        public MovementComponent() : this(Vector2.Zero, MovementProperties.StillLife)
-        {
-        }
-
-        internal MovementComponent(Vector2 location, MovementProperties properties)
+        internal MovementComponent(IGameObject parent, Vector2 location, MovementProperties properties)
+        :base(parent)
         {
             Location = location;
             Velocity = Vector2.Zero;
-            Id = Guid.NewGuid();
             Properties = properties;
         }
 
@@ -25,9 +22,7 @@ namespace SmallTown.Function.Framework.Component
 
         public MovementProperties Properties { get; private set; }
 
-        public Guid Id { get; }
-
-        public Task UpdateAsync()
+        public override Task UpdateAsync()
         {
             Location += Velocity;
             return Task.CompletedTask;

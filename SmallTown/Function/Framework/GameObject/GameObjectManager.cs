@@ -1,4 +1,4 @@
-﻿namespace SmallTown.Function
+﻿namespace SmallTown.Function.Framework.GameObject
 {
     internal sealed class GameObjectManager : IGameObjectManager
     {
