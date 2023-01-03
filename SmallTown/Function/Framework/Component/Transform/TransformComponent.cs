@@ -10,7 +10,7 @@ namespace SmallTown.Function.Framework.Component.Transform
         private Vector2 _location;
         private Vector2 _scale;
 
-        public TransformComponent(IGameObject parent, Vector2 location, Vector2? scale) : base(parent)
+        public TransformComponent(IGameObject parent, Vector2 location, Vector2? scale = null) : base(parent)
         {
             Location = location;
             Scale = scale ?? Vector2.One;

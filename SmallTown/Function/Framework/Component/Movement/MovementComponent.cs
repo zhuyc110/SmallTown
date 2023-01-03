@@ -1,22 +1,17 @@
-﻿using SmallTown.Function.Framework.GameObject;
+﻿using SmallTown.Function.Framework.Component.Transform;
+using SmallTown.Function.Framework.GameObject;
 using System.Numerics;
 
 namespace SmallTown.Function.Framework.Component.Movement
 {
     public class MovementComponent : ComponentBase
     {
-        internal MovementComponent(IGameObject parent, Vector2 location, MovementProperties properties)
+        internal MovementComponent(IGameObject parent, MovementProperties properties)
         :base(parent)
         {
-            Location = location;
             Velocity = Vector2.Zero;
             Properties = properties;
         }
-
-        /// <summary>
-        /// One day it will be a dedicate component.
-        /// </summary>
-        public Vector2 Location { get; private set; }
 
         public Vector2 Velocity { get; private set; }
 
@@ -24,7 +19,7 @@ namespace SmallTown.Function.Framework.Component.Movement
 
         public override Task UpdateAsync()
         {
-            Location += Velocity;
+            Parent.GetComponent<TransformComponent>()!.Location += Velocity;
             return Task.CompletedTask;
         }
 
@@ -41,7 +36,7 @@ namespace SmallTown.Function.Framework.Component.Movement
         /// <inheritdoc />
         public override string ToString()
         {
-            return $"{Location} v: {Velocity}";
+            return $"{Parent.GetComponent<TransformComponent>()!.Location} v: {Velocity}";
         }
     }
 }
