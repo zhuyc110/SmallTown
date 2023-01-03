@@ -1,12 +1,11 @@
 ﻿using SmallTown.Function.Framework.Component;
+using SmallTown.Function.Framework.World;
 
 namespace SmallTown.Function.Framework.GameObject
 {
-    public interface IGameObject
+    public interface IGameObject: IUpdatable
     {
         public Guid Id { get; }
-
-        Task UpdateAsync();
 
         public ICollection<IComponent> Components { get; }
 

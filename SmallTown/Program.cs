@@ -5,6 +5,8 @@ using SmallTown.Config;
 using SmallTown.Function;
 using SmallTown.Function.Framework.GameObject;
 using SmallTown.Function.Framework.World;
+using SmallTown.Function.Global;
+using SmallTown.Function.Physics;
 using SmallTown.Platform;
 
 var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
@@ -24,8 +26,11 @@ hostBuilder.ConfigureServices(services =>
     services.AddSingleton<IGameObjectManager, GameObjectManager>();
     services.AddSingleton<ISmallTownOutput, DefaultSmallTownOutput>();
     services.AddSingleton<IDirector, Director>();
+    services.AddSingleton<IPhysicsScene, PhysicsScene>();
 
     services.AddHostedService<GameTicker>();
+    GameContext.Context =
+        new GameContext { PhysicsScene = services.BuildServiceProvider().GetRequiredService<IPhysicsScene>() };
 });
 
 using var host = hostBuilder.Build();

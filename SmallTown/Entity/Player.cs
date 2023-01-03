@@ -1,5 +1,6 @@
 ﻿using SmallTown.Function;
 using SmallTown.Function.Framework.Component.Movement;
+using SmallTown.Function.Framework.Component.RigidBody;
 using SmallTown.Function.Framework.GameObject;
 using SmallTown.Platform;
 using System.Numerics;
@@ -32,16 +33,16 @@ namespace SmallTown.Entity
         public override async Task UpdateAsync()
         {
             _smallTownOutput.Print($"Player is here: {Location}");
-            foreach (var component in Components)
-            {
-                await component.UpdateAsync();
-            }
+            await base.UpdateAsync();
         }
 
         private void InitComponents()
         {
             _movement = new MovementComponent(this, _initLocation, new MovementProperties { CanWalk = true });
+            var rigidBody = new RigidBodyComponent(this);
+
             Components.Add(_movement);
+            Components.Add(rigidBody);
         }
     }
 }

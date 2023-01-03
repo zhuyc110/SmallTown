@@ -4,15 +4,28 @@ namespace SmallTown.Function.Framework.Component
 {
     public abstract class ComponentBase : IComponent
     {
-        protected WeakReference<IGameObject> Parent { get; }
+        protected IGameObject Parent
+        {
+            get
+            {
+                if (_parent.TryGetTarget(out var parent))
+                {
+                    return parent;
+                }
+
+                throw new ObjectDisposedException(nameof(Parent));
+            }
+        }
+
+        private readonly WeakReference<IGameObject> _parent;
 
         protected ComponentBase(IGameObject parent)
         {
-            Parent = new WeakReference<IGameObject>(parent);
+            _parent = new WeakReference<IGameObject>(parent);
             Id = Guid.NewGuid();
         }
 
-        public Guid Id { get; }
+        public Guid Id { get; protected set; }
 
         public abstract Task UpdateAsync();
 

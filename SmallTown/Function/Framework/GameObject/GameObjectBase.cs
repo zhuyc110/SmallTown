@@ -14,7 +14,13 @@ namespace SmallTown.Function.Framework.GameObject
 
         public ICollection<IComponent> Components { get; }
 
-        public abstract Task UpdateAsync();
+        public virtual async Task UpdateAsync()
+        {
+            foreach (var component in Components)
+            {
+                await component.UpdateAsync();
+            }
+        }
 
         public TComponent? GetComponent<TComponent>() where TComponent : class, IComponent
         {
