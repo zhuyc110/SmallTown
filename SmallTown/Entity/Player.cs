@@ -1,5 +1,4 @@
-﻿using SmallTown.Function;
-using SmallTown.Function.Framework.Component.Movement;
+﻿using SmallTown.Function.Framework.Component.Movement;
 using SmallTown.Function.Framework.Component.RigidBody;
 using SmallTown.Function.Framework.Component.Transform;
 using SmallTown.Function.Framework.GameObject;

@@ -7,6 +7,11 @@ namespace SmallTown.Infrastructure
     {
         public static Vector2 GetDimension(this Matrix3x2 matrix, int row)
         {
+            if (row >= 3)
+            {
+                throw new IndexOutOfRangeException(nameof(row));
+            }
+
             var vrow = Unsafe.Add(ref Unsafe.As<float, Vector2>(ref matrix.M11), row);
             return vrow;
         }

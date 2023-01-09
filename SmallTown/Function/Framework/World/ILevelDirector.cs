@@ -1,6 +1,6 @@
 ﻿namespace SmallTown.Function.Framework.World
 {
-    public interface IDirector
+    public interface ILevelDirector
     {
         Task StartAsync();
     }

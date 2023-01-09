@@ -25,7 +25,7 @@ hostBuilder.ConfigureServices(services =>
     services.AddSingleton(settings);
     services.AddSingleton<IGameObjectManager, GameObjectManager>();
     services.AddSingleton<ISmallTownOutput, DefaultSmallTownOutput>();
-    services.AddSingleton<IDirector, Director>();
+    services.AddSingleton<ILevelDirector, LevelDirector>();
     services.AddSingleton<IPhysicsScene, PhysicsScene>();
 
     services.AddHostedService<GameTicker>();

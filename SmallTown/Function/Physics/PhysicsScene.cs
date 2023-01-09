@@ -1,5 +1,4 @@
-﻿using SmallTown.Function.Framework.World;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Numerics;
 
 namespace SmallTown.Function.Physics

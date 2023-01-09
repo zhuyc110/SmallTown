@@ -9,7 +9,7 @@ namespace SmallTown.Function
     internal sealed class GameTicker : BackgroundService
     {
         private readonly IGameObjectManager _gameObjectManager;
-        private readonly IDirector _director;
+        private readonly ILevelDirector _levelDirector;
         private readonly ISmallTownOutput _smallTownOutput;
         private readonly Settings _settings;
 
@@ -17,12 +17,12 @@ namespace SmallTown.Function
 
         public GameTicker(IGameObjectManager gameObjectManager, 
             ISmallTownOutput smallTownOutput,
-            IDirector director,
+            ILevelDirector levelDirector,
             Settings settings)
         {
             _gameObjectManager = gameObjectManager;
             _smallTownOutput = smallTownOutput;
-            _director = director;
+            _levelDirector = levelDirector;
             _settings = settings;
         }
 
@@ -30,7 +30,7 @@ namespace SmallTown.Function
         {
             await base.StartAsync(cancellationToken);
 
-            await _director.StartAsync();
+            await _levelDirector.StartAsync();
 
             foreach (var gameObject in _gameObjectManager.GameObjects.OfType<IInitializableGameObject>())
             {
@@ -53,12 +53,24 @@ namespace SmallTown.Function
                 }
 
                 _smallTownOutput.Print($"The world updated at {DateTime.Now:HH:mm:ss}");
-                
-                foreach (var gameObject in _gameObjectManager.GameObjects)
-                {
-                    await gameObject.UpdateAsync();
-                }
+
+                await LogicalUpdate();
+
+                await RendererUpdate();
             }
+        }
+
+        private async Task LogicalUpdate()
+        {
+            foreach (var gameObject in _gameObjectManager.GameObjects)
+            {
+                await gameObject.UpdateAsync();
+            }
+        }
+
+        private async Task RendererUpdate()
+        {
+            await Task.CompletedTask;
         }
     }
 }

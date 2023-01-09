@@ -1,4 +1,6 @@
-﻿namespace SmallTown.Function.Framework.GameObject
+﻿using System.Collections.Concurrent;
+
+namespace SmallTown.Function.Framework.GameObject
 {
     internal sealed class GameObjectManager : IGameObjectManager
     {
@@ -6,7 +8,7 @@
 
         public GameObjectManager()
         {
-            _gameObjects = new Dictionary<Guid, IGameObject>();
+            _gameObjects = new ConcurrentDictionary<Guid, IGameObject>();
         }
 
         public ICollection<IGameObject> GameObjects => _gameObjects.Values;

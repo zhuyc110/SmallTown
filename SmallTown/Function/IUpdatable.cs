@@ -1,4 +1,4 @@
-﻿namespace SmallTown.Function.Framework.World
+﻿namespace SmallTown.Function
 {
     public interface IUpdatable
     {

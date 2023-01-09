@@ -1,5 +1,4 @@
 ﻿using SmallTown.Function.Framework.Component;
-using SmallTown.Function.Framework.World;
 
 namespace SmallTown.Function.Framework.GameObject
 {

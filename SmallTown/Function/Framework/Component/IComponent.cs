@@ -1,8 +1,7 @@
 ﻿namespace SmallTown.Function.Framework.Component
 {
-    public interface IComponent : IDisposable
+    public interface IComponent : IDisposable, IUpdatable
     {
         Guid Id { get; }
-        Task UpdateAsync();
     }
 }

@@ -5,12 +5,12 @@ using System.Numerics;
 
 namespace SmallTown.Function.Framework.World
 {
-    public class Director : IDirector
+    public class LevelDirector : ILevelDirector
     {
         private readonly IGameObjectManager _gameObjectManager;
         private readonly ISmallTownOutput _smallTownOutput;
 
-        public Director(ISmallTownOutput smallTownOutput, IGameObjectManager gameObjectManager)
+        public LevelDirector(ISmallTownOutput smallTownOutput, IGameObjectManager gameObjectManager)
         {
             _smallTownOutput = smallTownOutput;
             _gameObjectManager = gameObjectManager;
