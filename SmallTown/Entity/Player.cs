@@ -23,18 +23,20 @@ namespace SmallTown.Entity
 
         public Vector2 Location => _transform.Location;
 
+        public string Name { get; internal set; }
+
         public Task StartAsync()
         {
             InitComponents();
-            _smallTownOutput.Print($"Player starts here: {Location}");
+            _smallTownOutput.Print($"{Name} starts here: {Location}");
             _movement.SetVelocity(Vector2.UnitX);
             return Task.CompletedTask;
         }
 
         public override async Task UpdateAsync()
         {
-            _smallTownOutput.Print($"Player is here: {Location}");
             await base.UpdateAsync();
+            _smallTownOutput.Print($"{Name} is here: {Location}");
         }
 
         private void InitComponents()
