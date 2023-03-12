@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallTown", "SmallTown\SmallTown.csproj", "{404339C6-848A-4A75-A424-54C5758CABBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmallTown.Engine", "SmallTown.Engine\SmallTown.Engine.csproj", "{404339C6-848A-4A75-A424-54C5758CABBA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
