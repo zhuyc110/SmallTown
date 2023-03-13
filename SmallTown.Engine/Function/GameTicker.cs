@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using SmallTown.Config;
 using SmallTown.Function.Framework.GameObject;
 using SmallTown.Function.Framework.World;
@@ -18,12 +19,12 @@ namespace SmallTown.Function
         public GameTicker(IGameObjectManager gameObjectManager, 
             ISmallTownOutput smallTownOutput,
             ILevelDirector levelDirector,
-            Settings settings)
+            IOptions<Settings> settings)
         {
             _gameObjectManager = gameObjectManager;
             _smallTownOutput = smallTownOutput;
             _levelDirector = levelDirector;
-            _settings = settings;
+            _settings = settings.Value;
         }
 
         public override async Task StartAsync(CancellationToken cancellationToken)
@@ -45,7 +46,7 @@ namespace SmallTown.Function
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                await Task.Delay(_settings.FrameInterval, stoppingToken);
+                await Task.Delay(_settings.World.FrameInterval, stoppingToken);
 
                 if (!_initialized)
                 {

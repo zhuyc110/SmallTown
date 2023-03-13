@@ -25,14 +25,16 @@ namespace SmallTown.Function.Framework.World
 
             await Task.Run(() =>
             {
-                var user = new Player(_smallTownOutput, new Vector2(4, 2));
-                var playerObject = asset?[nameof(Player).ToLowerInvariant()];
-                if (playerObject != null)
-                {
-                    user.Name = playerObject[nameof(Player.Name).ToLowerInvariant()]?.ToString() ?? string.Empty;
-                }
+                //var user = new Player(_smallTownOutput, new Vector2(4, 2));
+                //var playerObject = asset?[nameof(Player).ToLowerInvariant()];
+                //if (playerObject != null)
+                //{
+                //    user.Name = playerObject[nameof(Player.Name).ToLowerInvariant()]?.ToString() ?? string.Empty;
+                //}
 
-                _gameObjectManager.RegisterGameObject(user);
+                //_gameObjectManager.RegisterGameObject(user);
+
+                _smallTownOutput.Print("Started...");
             });
         }
     }

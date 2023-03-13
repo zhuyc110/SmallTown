@@ -1,8 +1,8 @@
-﻿namespace SmallTown.Function.Framework.GameObject
-{
-    public interface IInitializableGameObject : IGameObject
-    {
-        Task StartAsync();
+﻿using SmallTown.Engine.Function;
 
+namespace SmallTown.Function.Framework.GameObject
+{
+    public interface IInitializableGameObject : IGameObject, IInitializable
+    {
     }
 }

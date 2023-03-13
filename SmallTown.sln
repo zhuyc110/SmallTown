@@ -5,9 +5,9 @@ VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmallTown.Engine", "SmallTown.Engine\SmallTown.Engine.csproj", "{404339C6-848A-4A75-A424-54C5758CABBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallTown.Game", "SmallTown.Game\SmallTown.Game.csproj", "{0DA1F5B8-829E-4889-9950-F7BAA1C7BFD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmallTown.Game", "SmallTown.Game\SmallTown.Game.csproj", "{0DA1F5B8-829E-4889-9950-F7BAA1C7BFD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tester", "Fake\Tester\Tester.csproj", "{75D53D40-DF0A-4B32-83D2-ECD8AEF47CF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmallTown.Runner", "SmallTown.Runner\SmallTown.Runner.csproj", "{75D53D40-DF0A-4B32-83D2-ECD8AEF47CF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

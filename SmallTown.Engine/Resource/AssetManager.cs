@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SmallTown.Engine.Resource;
 using System.IO.Abstractions;
 
 namespace SmallTown.Resource
