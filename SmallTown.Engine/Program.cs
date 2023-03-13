@@ -45,4 +45,4 @@ hostBuilder.ConfigureServices(services =>
 
 using var host = hostBuilder.Build();
 
-host.Run();
+await host.RunAsync();

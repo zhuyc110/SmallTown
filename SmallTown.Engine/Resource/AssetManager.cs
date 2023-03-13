@@ -31,5 +31,22 @@ namespace SmallTown.Resource
             await using var reader = new JsonTextReader(stringReader);
             return await JObject.LoadAsync(reader);
         }
+
+        public async Task<T?> LoadAndDeserialize<T>(string path) where T : class
+        {
+            if (!_file.Exists(path))
+            {
+                return default;
+            }
+
+            var jsonString = await _file.ReadAllTextAsync(path);
+
+            if (string.IsNullOrWhiteSpace(jsonString))
+            {
+                return default;
+            }
+
+            return JsonConvert.DeserializeObject<T>(jsonString);
+        }
     }
 }
