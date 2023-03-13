@@ -16,8 +16,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Update="Data\Personality\Element\zh-cn.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="Data\Personality\zh-cn.json">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>
 

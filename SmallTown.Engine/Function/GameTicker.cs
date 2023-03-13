@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using SmallTown.Config;
+using SmallTown.Engine.Function;
 using SmallTown.Function.Framework.GameObject;
 using SmallTown.Function.Framework.World;
 using SmallTown.Platform;
@@ -12,6 +13,7 @@ namespace SmallTown.Function
         private readonly IGameObjectManager _gameObjectManager;
         private readonly ILevelDirector _levelDirector;
         private readonly ISmallTownOutput _smallTownOutput;
+        private readonly IEnumerable<IInitializable> _initializables;
         private readonly Settings _settings;
 
         private bool _initialized;
@@ -19,17 +21,24 @@ namespace SmallTown.Function
         public GameTicker(IGameObjectManager gameObjectManager, 
             ISmallTownOutput smallTownOutput,
             ILevelDirector levelDirector,
+            IEnumerable<IInitializable> initializables, 
             IOptions<Settings> settings)
         {
             _gameObjectManager = gameObjectManager;
             _smallTownOutput = smallTownOutput;
             _levelDirector = levelDirector;
+            _initializables = initializables;
             _settings = settings.Value;
         }
 
         public override async Task StartAsync(CancellationToken cancellationToken)
         {
             await base.StartAsync(cancellationToken);
+
+            foreach (var initializable in _initializables)
+            {
+                await initializable.StartAsync();
+            }
 
             await _levelDirector.StartAsync();
 

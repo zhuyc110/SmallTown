@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SmallTown.Game.Shared;
 using SmallTown.Resource;
 using System;
 using System.Collections.Generic;
@@ -10,20 +11,35 @@ namespace SmallTown.Game.Person
 {
     public class Personality
     {
+        private static IReadOnlyDictionary<int, string> _elements = new Dictionary<int, string>();
+
         public int Id { get; }
 
         public string Name { get; }
 
         public string Description { get; }
 
-        private readonly string[] _highElements;
+        internal IReadOnlyCollection<string> HighElements
+        {
+            get
+            {
+                return _highElementIds.Select(x => _elements[x]).ToList();
+            }
+        }
 
-        public Personality(int id, string name, string description, string[] highElements)
+        private readonly int[] _highElementIds;
+
+        public Personality(int id, string name, string description, int[] highElements)
         {
             Id = id;
             Name = name;
             Description = description;
-            _highElements = highElements;
+            _highElementIds = highElements;
+        }
+
+        public static void InitElements(IEnumerable<IdValuePair<int, string>> elements)
+        {
+            _elements = elements.ToDictionary(x => x.Id, x => x.Value);
         }
 
         public override string ToString()

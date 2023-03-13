@@ -40,7 +40,7 @@ namespace SmallTown.Resource
                 return default;
             }
 
-            var jsonString = await _file.ReadAllTextAsync(path);
+            var jsonString = await _file.ReadAllTextAsync(path, System.Text.Encoding.UTF8);
 
             if (string.IsNullOrWhiteSpace(jsonString))
             {

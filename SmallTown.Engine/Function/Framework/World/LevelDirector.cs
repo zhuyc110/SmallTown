@@ -33,9 +33,9 @@ namespace SmallTown.Function.Framework.World
                 //}
 
                 //_gameObjectManager.RegisterGameObject(user);
-
-                _smallTownOutput.Print("Started...");
             });
+
+            _smallTownOutput.Print("Started...");
         }
     }
 }

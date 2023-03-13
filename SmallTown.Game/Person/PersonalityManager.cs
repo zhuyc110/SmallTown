@@ -1,4 +1,7 @@
-﻿using SmallTown.Engine.Resource;
+﻿using SmallTown.Engine.Function;
+using SmallTown.Engine.Resource;
+using SmallTown.Function.Framework.GameObject;
+using SmallTown.Game.Shared;
 using SmallTown.Resource;
 using System;
 using System.Collections.Generic;
@@ -8,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SmallTown.Game.Person
 {
-    public class PersonalityManager
+    public class PersonalityManager : IInitializable
     {
         private static IList<Personality> Personalities = new List<Personality>();
 
@@ -21,19 +24,23 @@ namespace SmallTown.Game.Person
             _languageService = languageService;
         }
 
-        public async Task InitializeAsync()
+        public async Task StartAsync()
         {
             if (Personalities.Count > 0)
             {
                 return;
             }
 
-            var filePath = $"./Data/Personality/{_languageService.CurrentLanguage}.json";
-            var jsonData = await _assetManager.LoadAndDeserialize<Personality[]>(filePath);
+            var elementFilePath = $"./Data/Personality/Element/{_languageService.CurrentLanguage}.json";
+            var elements = await _assetManager.LoadAndDeserialize<IdValuePair<int, string>[]>(elementFilePath);
+            Personality.InitElements(elements!);
 
-            if (jsonData != null)
+            var personalityFilePath = $"./Data/Personality/{_languageService.CurrentLanguage}.json";
+            var personalities = await _assetManager.LoadAndDeserialize<Personality[]>(personalityFilePath);
+
+            if (personalities != null)
             {
-                Personalities = jsonData.OrderBy(x => x.Id).ToList();
+                Personalities = personalities.OrderBy(x => x.Id).ToList();
             }
         }
 

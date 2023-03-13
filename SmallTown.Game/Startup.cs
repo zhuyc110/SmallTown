@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SmallTown.Engine.Function;
 using SmallTown.Game.Person;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ public static class Startup
     {
         hostBuilder.ConfigureServices(services =>
         {
-            services.AddSingleton<PersonalityManager>();
+            services.AddSingleton<IInitializable, PersonalityManager>();
         });
 
         return hostBuilder;
