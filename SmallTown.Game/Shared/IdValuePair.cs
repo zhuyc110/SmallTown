@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace SmallTown.Game.Shared
 {
-    public readonly struct IdValuePair<TId, TValue>
+    public readonly struct IdValuePair<TId, TValue> where TId : struct
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly TId _id;

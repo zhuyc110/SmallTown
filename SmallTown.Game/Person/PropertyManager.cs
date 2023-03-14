@@ -7,33 +7,33 @@ public class PropertyManager : ReadableObjectManagerBase<Property>
 {
     protected override string ReadableObjectKey => nameof(Property);
 
+    private static readonly IDictionary<int, IDictionary<Rarity, string>> LabelMapping = new Dictionary<int, IDictionary<Rarity, string>>();
+
     public PropertyManager(IAssetManager assetManager, ILanguageService languageService)
         : base(assetManager, languageService)
     {
     }
 
-    public static Rarity GetRarity(ReadableObjectValueInstance<Property> propertyInstance)
+    public static string GetLabel(ReadableObjectValueInstance<Property> instance)
     {
-        switch (propertyInstance.Value)
+        if (LabelMapping.TryGetValue(instance.Reference.Id, out var labels) && labels.TryGetValue(instance.Rarity, out var label))
         {
-            case int n when n <= 4:
-                return Rarity.Lousy;
-            case int n when n <= 14:
-                return Rarity.Poor;
-            case int n when n <= 34:
-                return Rarity.Common;
-            case int n when n <= 64:
-                return Rarity.Rare;
-            case int n when n <= 84:
-                return Rarity.Excellent;
-            case int n when n <= 94:
-                return Rarity.Epic;
-            case int n when n <= 100:
-                return Rarity.Legendary;
-            default:
-                break;
+            return label;
         }
 
-        return Rarity.Undefined;
+        return string.Empty;
+    }
+
+    public override async Task StartAsync()
+    {
+        await base.StartAsync();
+
+        var stringResourceFilePath = $"./Data/Property/Label/{_languageService.CurrentLanguage}.json";
+        var stringResource = await _assetManager.LoadAndDeserialize<IdValuePair<int, string[]>[]>(stringResourceFilePath);
+
+        foreach (var (id, labels) in stringResource!)
+        {
+            LabelMapping.Add(id, labels.Select((label, index) => new { label, index }).ToDictionary(x => (Rarity)(x.index + 1), x => x.label));
+        }
     }
 }
