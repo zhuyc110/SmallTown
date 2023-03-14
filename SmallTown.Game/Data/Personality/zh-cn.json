@@ -15,4 +15,68 @@
 			1, 3
 		]
 	},
+	{
+		"id": 3,
+		"name": "温柔",
+		"description": "很温柔",
+		"highElements": [
+			2, 3
+		]
+	},
+	{
+		"id": 4,
+		"name": "热情",
+		"description": "很热情",
+		"highElements": [
+			2, 4
+		]
+	},
+	{
+		"id": 5,
+		"name": "敏感",
+		"description": "很敏感",
+		"highElements": [
+			3, 5
+		]
+	},
+	{
+		"id": 6,
+		"name": "傲慢",
+		"description": "很傲慢",
+		"highElements": [
+			1, 5
+		]
+	},
+	{
+		"id": 7,
+		"name": "冲动",
+		"description": "很傲慢",
+		"highElements": [
+			4, 5
+		]
+	},
+	{
+		"id": 8,
+		"name": "软弱",
+		"description": "很傲慢",
+		"highElements": [
+			2, 5
+		]
+	},
+	{
+		"id": 9,
+		"name": "活泼",
+		"description": "很活泼",
+		"highElements": [
+			3, 4
+		]
+	},
+	{
+		"id": 10,
+		"name": "勇敢",
+		"description": "很勇敢",
+		"highElements": [
+			1, 4
+		]
+	},
 ]
