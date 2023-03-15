@@ -20,7 +20,7 @@ namespace SmallTown.Game.Person
                 return;
             }
 
-            var elementFilePath = $"./Data/Personality/Element/{_languageService.CurrentLanguage}.json";
+            var elementFilePath = $"./Data/{nameof(Personality)}/Element/{_languageService.CurrentLanguage}.json";
             var elements = await _assetManager.LoadAndDeserialize<IdValuePair<int, string>[]>(elementFilePath);
             Personality.InitElements(elements!);
 

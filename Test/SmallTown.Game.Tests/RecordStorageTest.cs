@@ -1,4 +1,3 @@
-using Moq.AutoMock;
 using SmallTown.Game.Record;
 
 namespace SmallTown.Game.Tests;

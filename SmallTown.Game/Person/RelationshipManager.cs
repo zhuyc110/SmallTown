@@ -1,21 +1,20 @@
 ﻿using SmallTown.Engine.Resource;
-using SmallTown.Game.Record;
 using SmallTown.Game.Shared;
 using SmallTown.Resource;
 
 namespace SmallTown.Game.Person;
-public class PropertyManager : ReadableObjectManagerBase<Property>
+public class RelationshipManager : ReadableObjectManagerBase<Relationship>
 {
-    protected override string ReadableObjectKey => nameof(Property);
+    protected override string ReadableObjectKey => nameof(Relationship);
 
     private static readonly IDictionary<int, IDictionary<Rarity, string>> LabelMapping = new Dictionary<int, IDictionary<Rarity, string>>();
 
-    public PropertyManager(IAssetManager assetManager, ILanguageService languageService)
+    public RelationshipManager(IAssetManager assetManager, ILanguageService languageService)
         : base(assetManager, languageService)
     {
     }
 
-    public static string GetLabel(ValueInstance<Property> instance)
+    public static string GetLabel(ValueInstance<Relationship> instance)
     {
         if (LabelMapping.TryGetValue(instance.Reference.Id, out var labels) && labels.TryGetValue(instance.Rarity, out var label))
         {
@@ -29,7 +28,7 @@ public class PropertyManager : ReadableObjectManagerBase<Property>
     {
         await base.StartAsync();
 
-        var stringResourceFilePath = $"./Data/{nameof(Property)}/Label/{_languageService.CurrentLanguage}.json";
+        var stringResourceFilePath = $"./Data/{nameof(Relationship)}/Label/{_languageService.CurrentLanguage}.json";
         var stringResource = await _assetManager.LoadAndDeserialize<IdValuePair<int, string[]>[]>(stringResourceFilePath);
 
         foreach (var (id, labels) in stringResource!)

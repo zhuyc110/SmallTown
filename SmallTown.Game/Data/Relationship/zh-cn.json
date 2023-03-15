@@ -1,0 +1,17 @@
+﻿[
+	{
+		"id": 1,
+		"name": "朋友",
+		"description": "一周的朋友"
+	},
+	{
+		"id": 2,
+		"name": "爱人",
+		"description": "山无陵，江水为竭"
+	},
+	{
+		"id": 3,
+		"name": "亲人",
+		"description": "自证预言"
+	}
+]

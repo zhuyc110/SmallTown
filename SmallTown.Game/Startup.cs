@@ -14,6 +14,7 @@ public static class Startup
         {
             services.AddSingleton<IInitializable, PersonalityManager>();
             services.AddSingleton<IInitializable, PropertyManager>();
+            services.AddSingleton<IInitializable, RelationshipManager>();
         });
 
         return hostBuilder;
