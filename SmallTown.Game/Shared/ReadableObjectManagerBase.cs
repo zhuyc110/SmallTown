@@ -1,13 +1,12 @@
 ﻿using SmallTown.Engine.Function;
 using SmallTown.Engine.Resource;
-using SmallTown.Game.Shared;
 using SmallTown.Resource;
 
-namespace SmallTown.Game.Person;
-public abstract class ReadableObjectManagerBase<TReadableObject> : IInitializable 
+namespace SmallTown.Game.Shared;
+public abstract class ReadableObjectManagerBase<TReadableObject> : IInitializable
     where TReadableObject : IReadableObject
 {
-    protected static IList<TReadableObject> ReadableObjects = new List<TReadableObject>();
+    protected static IReadOnlyList<TReadableObject> ReadableObjects = new List<TReadableObject>();
 
     protected abstract string ReadableObjectKey { get; }
 

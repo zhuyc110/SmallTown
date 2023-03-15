@@ -1,7 +1,6 @@
-﻿using SmallTown.Game.Shared;
+﻿namespace SmallTown.Game.Shared;
 
-namespace SmallTown.Game.Person;
-public class ReadableObjectValueInstance<TReadableObject>
+public class ValueInstance<TReadableObject>
     where TReadableObject : IReadableObject
 {
     public TReadableObject Reference { get; }
@@ -27,13 +26,13 @@ public class ReadableObjectValueInstance<TReadableObject>
 
     private int _value;
 
-    public ReadableObjectValueInstance(TReadableObject reference, int? value = null)
+    public ValueInstance(TReadableObject reference, int? value = null)
     {
         Reference = reference;
         Value = value ?? DefaultValue;
     }
 
-    private static Rarity GetRarity(ReadableObjectValueInstance<TReadableObject> instance)
+    private static Rarity GetRarity(ValueInstance<TReadableObject> instance)
     {
         switch (instance.Value)
         {

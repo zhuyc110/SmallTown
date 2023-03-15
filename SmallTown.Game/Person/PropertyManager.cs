@@ -1,4 +1,5 @@
 ﻿using SmallTown.Engine.Resource;
+using SmallTown.Game.Record;
 using SmallTown.Game.Shared;
 using SmallTown.Resource;
 
@@ -14,7 +15,7 @@ public class PropertyManager : ReadableObjectManagerBase<Property>
     {
     }
 
-    public static string GetLabel(ReadableObjectValueInstance<Property> instance)
+    public static string GetLabel(ValueInstance<Property> instance)
     {
         if (LabelMapping.TryGetValue(instance.Reference.Id, out var labels) && labels.TryGetValue(instance.Rarity, out var label))
         {
