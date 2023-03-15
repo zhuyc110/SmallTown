@@ -2,7 +2,7 @@
 	{
 		"id": 1,
 		"name": "稳重",
-		"description": "很稳重",
+		"description": "泰山崩于前而色不变",
 		"highElements": [
 			1, 2
 		]
@@ -10,7 +10,7 @@
 	{
 		"id": 2,
 		"name": "乐观",
-		"description": "很乐观",
+		"description": "此间乐，不思蜀",
 		"highElements": [
 			1, 3
 		]
@@ -18,7 +18,7 @@
 	{
 		"id": 3,
 		"name": "温柔",
-		"description": "很温柔",
+		"description": "不打扰",
 		"highElements": [
 			2, 3
 		]
@@ -50,7 +50,7 @@
 	{
 		"id": 7,
 		"name": "冲动",
-		"description": "很傲慢",
+		"description": "是魔鬼",
 		"highElements": [
 			4, 5
 		]
@@ -58,7 +58,7 @@
 	{
 		"id": 8,
 		"name": "软弱",
-		"description": "很傲慢",
+		"description": "很软弱",
 		"highElements": [
 			2, 5
 		]
@@ -74,7 +74,7 @@
 	{
 		"id": 10,
 		"name": "勇敢",
-		"description": "很勇敢",
+		"description": "勇者不惧",
 		"highElements": [
 			1, 4
 		]

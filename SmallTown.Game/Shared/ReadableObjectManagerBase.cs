@@ -30,16 +30,16 @@ public abstract class ReadableObjectManagerBase<TReadableObject> : IInitializabl
         }
     }
 
-    public static TReadableObject Get(int id)
+    public virtual TReadableObject Get(int id)
     {
         if (id <= 0 || ReadableObjects.Count < id)
         {
-            return ReadableObjects.First();
+            return ReadableObjects[0];
         }
 
         if (ReadableObjects[id - 1].Id != id)
         {
-            return ReadableObjects.First();
+            return ReadableObjects[0];
         }
 
         return ReadableObjects[id - 1];

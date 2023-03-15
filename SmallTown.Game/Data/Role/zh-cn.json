@@ -1,0 +1,59 @@
+﻿[
+	{
+		"id": 1,
+		"name": "学生",
+		"description": "是学生",
+		"children": [
+			{
+				"id": 10001,
+				"name": "小学生",
+				"description": "玩游戏可厉害了"
+			},
+			{
+				"id": 10002,
+				"name": "初中生",
+				"description": "有邪王真眼"
+			},
+			{
+				"id": 10003,
+				"name": "高中生",
+				"description": "经常拯救世界"
+			},
+			{
+				"id": 10004,
+				"name": "大学生",
+				"description": "预备社畜"
+			}
+		]
+	},
+	{
+		"id": 2,
+		"name": "老师",
+		"description": "是老师"
+	},
+	{
+		"id": 3,
+		"name": "行政",
+		"description": "是行政"
+	},
+	{
+		"id": 4,
+		"name": "管理",
+		"description": "是管理"
+	},
+	{
+		"id": 5,
+		"name": "医生",
+		"description": "是医生"
+	},
+	{
+		"id": 6,
+		"name": "护士",
+		"description": "是护士"
+	},
+	{
+		"id": 7,
+		"name": "药师",
+		"description": "是药师"
+	}
+]
