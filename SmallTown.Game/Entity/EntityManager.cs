@@ -21,7 +21,7 @@ public class EntityManager : ReadableObjectManagerBase<EntityTemplate>
 
         foreach (var entity in ReadableObjects) 
         {
-            entity.InitRoles(_roleManager);
+            entity.Setup(_roleManager);
         }
     }
 }

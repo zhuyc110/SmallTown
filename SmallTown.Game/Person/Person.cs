@@ -22,7 +22,7 @@ public class Person
 
     public Personality Personality { get; init; }
 
-    public ValueInstance<Property> Properties { get; init; }
+    public IReadOnlyCollection<ValueInstance<Property>> Properties { get; init; }
 
     public Role Role { get; init; }
 }

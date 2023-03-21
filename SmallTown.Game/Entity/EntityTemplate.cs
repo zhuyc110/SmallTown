@@ -21,7 +21,7 @@ public class EntityTemplate : ReadableObjectBase
         _roleConfigs = roles;
     }
 
-    public void InitRoles(IRoleManager roleManager)
+    public void Setup(IRoleManager roleManager)
     {
         foreach (var (id, count) in _roleConfigs)
         {

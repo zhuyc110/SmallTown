@@ -1,0 +1,18 @@
+﻿[
+	{
+		"id": 1,
+		"name": "开学",
+		"description": "开学了",
+		"peopleCount": 10000,
+		"locationIds": [
+			1
+		],
+		"conditions": [
+			{
+				"minAge": 6,
+				"maxAge": 12,
+				"sex": 3
+			}
+		]
+	}
+]
