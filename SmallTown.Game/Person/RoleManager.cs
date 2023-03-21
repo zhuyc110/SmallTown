@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SmallTown.Game.Person;
-public class RoleManager : ReadableObjectManagerBase<Role>
+public class RoleManager : ReadableObjectManagerBase<Role>, IRoleManager
 {
     protected override string ReadableObjectKey => nameof(Role);
 
