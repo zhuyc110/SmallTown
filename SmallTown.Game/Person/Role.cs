@@ -3,11 +3,11 @@
 namespace SmallTown.Game.Person;
 public class Role : ReadableObjectBase
 {
-    public float Hardness { get; set; }
+    public int Hardness { get; set; }
 
     public IList<Role> Children { get; set; }
 
-    public Role(int id, string name, string description, IList<Role> children, float hardness = 0)
+    public Role(int id, string name, string description, IList<Role> children, int hardness = 0)
         : base(id, name, description)
     {
         Children = children;
