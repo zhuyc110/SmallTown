@@ -11,12 +11,12 @@ public class Condition
 {
     private readonly int _minAge;
     private readonly int _maxAge;
-    private readonly int _sex;
+    private readonly Sex _sex;
     private readonly IList<int> _personalityIds;
     private readonly IList<IdValuePair<int, int>> _propertyMapping;
     private readonly IList<Operator> _operators;
 
-    public Condition(int minAge, int maxAge, int sex, IList<int> personalityIds, IList<IdValuePair<int, int>> propertyMapping, IList<Operator> operators)
+    public Condition(int minAge, int maxAge, Sex sex, IList<int> personalityIds, IList<IdValuePair<int, int>> propertyMapping, IList<Operator> operators)
     {
         _minAge = minAge;
         _maxAge = maxAge;
@@ -28,7 +28,7 @@ public class Condition
 
     public bool CanMatch(Person.Person person)
     {
-        if (person.Sex != _sex)
+        if (!person.Sex.HasFlag(_sex))
         {
             return false;
         }

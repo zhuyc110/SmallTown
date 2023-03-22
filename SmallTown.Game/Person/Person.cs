@@ -14,7 +14,7 @@ public class Person
 
     public string LastName { get; init; }
 
-    public int Sex { get; init; }
+    public Sex Sex { get; init; }
 
     public int Age { get; init; }
 
