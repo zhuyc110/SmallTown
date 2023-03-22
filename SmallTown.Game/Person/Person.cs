@@ -8,21 +8,21 @@ using System.Threading.Tasks;
 namespace SmallTown.Game.Person;
 public class Person
 {
-    public int Id { get; init; }
+    public int Id { get; set; }
 
-    public string FirstName { get; init; }
+    public string FirstName { get; set; }
 
-    public string LastName { get; init; }
+    public string LastName { get; set; }
 
-    public Sex Sex { get; init; }
+    public Sex Sex { get; set; }
 
-    public int Age { get; init; }
+    public int Age { get; set; }
 
-    public bool Alive { get; init; }
+    public bool Alive { get; set; }
 
-    public Personality Personality { get; init; }
+    public Personality Personality { get; set; }
 
-    public IReadOnlyCollection<ValueInstance<Property>> Properties { get; init; }
+    public IReadOnlyCollection<ValueInstance<Property>> Properties { get; set; }
 
-    public Role Role { get; init; }
+    public Role Role { get; set; }
 }

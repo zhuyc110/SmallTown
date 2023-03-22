@@ -11,7 +11,10 @@ using SmallTown.Platform;
 using SmallTown.Resource;
 using System.IO.Abstractions;
 using Microsoft.Extensions.Configuration;
+using SmallTown.Engine.Core;
+using System.Runtime.CompilerServices;
 
+[assembly:InternalsVisibleTo("SmallTown.Engine.Tests")]
 namespace SmallTown.Engine
 {
     public static class Startup
@@ -28,6 +31,7 @@ namespace SmallTown.Engine
                 services.AddSingleton<IPhysicsScene, PhysicsScene>();
                 services.AddSingleton<IAssetManager, AssetManager>();
                 services.AddSingleton<ILanguageService, LanguageService>();
+                services.AddSingleton<IRandom, SmallRandom>();
 
                 services.AddHostedService<GameTicker>();
 

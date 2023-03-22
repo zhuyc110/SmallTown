@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SmallTown.Engine.Function;
+using SmallTown.Game.Config;
 using SmallTown.Game.Entity;
 using SmallTown.Game.Event;
 using SmallTown.Game.Person;
@@ -12,6 +13,8 @@ public static class Startup
 {
     public static IHostBuilder RegisterGame(this IHostBuilder hostBuilder, IConfiguration config)
     {
+        var gameConfig = new ConfigurationBuilder().AddJsonFile("settings.json").Build();
+
         hostBuilder.ConfigureServices(services =>
         {
             services.AddSingleton<IInitializable, PersonalityManager>();
@@ -21,6 +24,8 @@ public static class Startup
                 .AddSingleton<IInitializable, IRoleManager>(config => config.GetService<IRoleManager>()!);
             services.AddSingleton<IInitializable, EntityManager>();
             services.AddSingleton<IInitializable, EventManager>();
+
+            services.Configure<GameSettings>(gameConfig);
         });
 
         return hostBuilder;

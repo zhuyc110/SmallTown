@@ -1,6 +1,6 @@
 using SmallTown.Game.Record;
 
-namespace SmallTown.Game.Tests;
+namespace SmallTown.Game.Tests.Record;
 
 [TestClass]
 public class RecordStorageTest
@@ -8,7 +8,7 @@ public class RecordStorageTest
     [TestMethod]
     public void Add_ShouldAddCorrectly_Gives42()
     {
-        var record = new Record.Record
+        var record = new Game.Record.Record
         {
             Id = 42,
             EventId = 42,
@@ -25,7 +25,7 @@ public class RecordStorageTest
     [TestMethod]
     public void Add_ShouldAddCorrectly_Gives10()
     {
-        var record = new Record.Record
+        var record = new Game.Record.Record
         {
             Id = 10,
             EventId = 10,
@@ -45,7 +45,7 @@ public class RecordStorageTest
     [DataRow(65536)]
     public void Get_ShouldRetrieveStoredValue(int id)
     {
-        var record = new Record.Record
+        var record = new Game.Record.Record
         {
             Id = id
         };
