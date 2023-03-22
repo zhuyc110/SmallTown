@@ -3,7 +3,7 @@ using SmallTown.Game.Shared;
 using System.Numerics;
 
 namespace SmallTown.Game.Entity;
-public class EntityTemplate : ReadableObjectBase
+public class Entity : ReadableObjectBase
 {
     public Vector2 Location { get; set; }
 
@@ -13,7 +13,7 @@ public class EntityTemplate : ReadableObjectBase
 
     private readonly IReadOnlyCollection<IdValuePair<int, int>> _roleConfigs;
 
-    public EntityTemplate(int id, string name, string description, int scope, IReadOnlyCollection<IdValuePair<int, int>> roles)
+    public Entity(int id, string name, string description, int scope, IReadOnlyCollection<IdValuePair<int, int>> roles)
         : base(id, name, description)
     {
         Scope = (Scope)scope;

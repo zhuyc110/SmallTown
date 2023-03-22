@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SmallTown.Game.Event;
-public class EventTemplate : ReadableObjectBase
+public class Event : ReadableObjectBase
 {
     public int PeopleCount { get; }
     public IList<int> LocationIds { get; }
     public IList<Condition> Conditions { get; }
 
-    public EventTemplate(int id, string name, string description, int peopleCount, IList<int> locationIds, IList<Condition> conditions)
+    public Event(int id, string name, string description, int peopleCount, IList<int> locationIds, IList<Condition> conditions)
         : base(id, name, description)
     {
         PeopleCount = peopleCount;

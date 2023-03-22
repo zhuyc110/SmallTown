@@ -9,9 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SmallTown.Game.Event;
-public class EventManager : ReadableObjectManagerBase<EventTemplate>
+public class EventManager : ReadableObjectManagerBase<Event>
 {
-    protected override string ReadableObjectKey => "Event";
+    protected override string ReadableObjectKey => nameof(Event);
 
     public EventManager(IAssetManager assetManager, ILanguageService languageService) : base(assetManager, languageService)
     {

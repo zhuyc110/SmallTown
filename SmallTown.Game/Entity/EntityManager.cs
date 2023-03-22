@@ -4,11 +4,11 @@ using SmallTown.Game.Shared;
 using SmallTown.Resource;
 
 namespace SmallTown.Game.Entity;
-public class EntityManager : ReadableObjectManagerBase<EntityTemplate>
+public class EntityManager : ReadableObjectManagerBase<Entity>
 {
     private readonly IRoleManager _roleManager;
 
-    protected override string ReadableObjectKey => "Entity";
+    protected override string ReadableObjectKey => nameof(Entity);
 
     public EntityManager(IAssetManager assetManager, ILanguageService languageService, IRoleManager roleManager) : base(assetManager, languageService)
     {
