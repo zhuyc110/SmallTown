@@ -2,12 +2,6 @@
 using SmallTown.Engine.Core;
 using SmallTown.Game.Config;
 using SmallTown.Game.Person;
-using SmallTown.Game.Record;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SmallTown.Game.Tests.Person;
 [TestClass]

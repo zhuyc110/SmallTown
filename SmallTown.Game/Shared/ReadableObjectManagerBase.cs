@@ -3,23 +3,19 @@ using SmallTown.Engine.Resource;
 using SmallTown.Resource;
 
 namespace SmallTown.Game.Shared;
-public abstract class ReadableObjectManagerBase<TReadableObject> : IInitializable
+public abstract class ReadableObjectManagerBase<TReadableObject> : ReadableObjectManagerBase
     where TReadableObject : IReadableObject
 {
     protected static IReadOnlyList<TReadableObject> ReadableObjects = new List<TReadableObject>();
 
     protected abstract string ReadableObjectKey { get; }
 
-    protected readonly IAssetManager _assetManager;
-    protected readonly ILanguageService _languageService;
-
     protected ReadableObjectManagerBase(IAssetManager assetManager, ILanguageService languageService)
+        :base(assetManager, languageService)
     {
-        _assetManager = assetManager;
-        _languageService = languageService;
     }
 
-    public virtual async Task StartAsync()
+    public override async Task StartAsync()
     {
         var personalityFilePath = $"./Data/{ReadableObjectKey}/{_languageService.CurrentLanguage}.json";
         var personalities = await _assetManager.LoadAndDeserialize<TReadableObject[]>(personalityFilePath);
@@ -44,4 +40,18 @@ public abstract class ReadableObjectManagerBase<TReadableObject> : IInitializabl
 
         return ReadableObjects[id - 1];
     }
+}
+
+public abstract class ReadableObjectManagerBase : IInitializable
+{
+    protected readonly IAssetManager _assetManager;
+    protected readonly ILanguageService _languageService;
+
+    protected ReadableObjectManagerBase(IAssetManager assetManager, ILanguageService languageService)
+    {
+        _assetManager = assetManager;
+        _languageService = languageService;
+    }
+
+    public abstract Task StartAsync();
 }

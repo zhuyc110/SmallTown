@@ -33,6 +33,17 @@ public class PersonGenerator
         return this;
     }
 
+    public PersonGenerator ConfigLastName()
+    {
+        for (var index = 0; index < _people.Count; index++)
+        {
+            var person = _people[index];
+
+        }
+
+        return this;
+    }
+
     public PersonGenerator ConfigSex()
     {
         for (var index = 0; index < _people.Count; index++)
