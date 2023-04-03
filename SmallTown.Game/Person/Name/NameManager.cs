@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SmallTown.Game.Person.Name;
-public class NameManager : ReadableObjectManagerBase
+public class NameManager : DataReadingManagerBase
 {
     private IDictionary<float, string> _lastNameRateTable = new Dictionary<float, string>();
     private IDictionary<(int, Sex), string[]> _firstNameRateTable = new Dictionary<(int, Sex), string[]>();

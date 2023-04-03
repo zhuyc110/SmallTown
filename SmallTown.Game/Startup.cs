@@ -6,6 +6,7 @@ using SmallTown.Game.Config;
 using SmallTown.Game.Entity;
 using SmallTown.Game.Event;
 using SmallTown.Game.Person;
+using SmallTown.Game.Person.Name;
 
 namespace SmallTown.Game;
 
@@ -24,6 +25,7 @@ public static class Startup
                 .AddSingleton<IInitializable, IRoleManager>(config => config.GetService<IRoleManager>()!);
             services.AddSingleton<IInitializable, EntityManager>();
             services.AddSingleton<IInitializable, EventManager>();
+            services.AddSingleton<IInitializable, NameManager>();
 
             services.Configure<GameSettings>(gameConfig);
         });

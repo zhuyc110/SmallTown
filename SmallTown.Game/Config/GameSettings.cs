@@ -13,4 +13,5 @@ public class GameSettings
 public class PeopleSettings
 {
     public int SexRate { get; set; }
+    public Dictionary<int, float> AgeTable { get; set; }
 }

@@ -55,6 +55,19 @@ public class PersonGenerator
         return this;
     }
 
+    public PersonGenerator ConfigAge()
+    {
+        for (var index = 0; index < _people.Count; index++)
+        {
+            var person = _people[index];
+            var rangeKey = _randomes[index] / 100f;
+            var rate = _gameSettings.People.AgeTable.OrderBy(x => x.Value - rangeKey).First(x => x.Value - rangeKey >= 0);
+            person.Age = rate.Key + _random.Next() / 10;
+        }
+
+        return this;
+    }
+
     public IEnumerable<Person> Build()
     {
         _randomes = Array.Empty<int>();

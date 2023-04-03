@@ -3,7 +3,7 @@ using SmallTown.Engine.Resource;
 using SmallTown.Resource;
 
 namespace SmallTown.Game.Shared;
-public abstract class ReadableObjectManagerBase<TReadableObject> : ReadableObjectManagerBase
+public abstract class ReadableObjectManagerBase<TReadableObject> : DataReadingManagerBase
     where TReadableObject : IReadableObject
 {
     protected static IReadOnlyList<TReadableObject> ReadableObjects = new List<TReadableObject>();
@@ -40,18 +40,4 @@ public abstract class ReadableObjectManagerBase<TReadableObject> : ReadableObjec
 
         return ReadableObjects[id - 1];
     }
-}
-
-public abstract class ReadableObjectManagerBase : IInitializable
-{
-    protected readonly IAssetManager _assetManager;
-    protected readonly ILanguageService _languageService;
-
-    protected ReadableObjectManagerBase(IAssetManager assetManager, ILanguageService languageService)
-    {
-        _assetManager = assetManager;
-        _languageService = languageService;
-    }
-
-    public abstract Task StartAsync();
 }
