@@ -22,6 +22,12 @@
 	  <None Update="Data\Event\zh-cn.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
+	  <None Update="Data\People\FirstName\zh-cn.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Data\People\LastName\zh-cn.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="Data\Personality\Element\zh-cn.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>

@@ -25,8 +25,13 @@ internal class SmallRandom : IRandom
         return numbers.Take(count).Select(x => x % 101).ToList();
     }
 
-    public int Next()
+    public int Next(int max = 101)
     {
-        return RandomNumberGenerator.GetInt32(1, 101);
+        return RandomNumberGenerator.GetInt32(1, max);
+    }
+
+    public static int NextNonNegative(int max)
+    {
+        return RandomNumberGenerator.GetInt32(1, max);
     }
 }

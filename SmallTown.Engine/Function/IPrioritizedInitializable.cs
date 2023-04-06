@@ -8,5 +8,5 @@ namespace SmallTown.Engine.Function;
 
 public interface IPrioritizedInitializable : IInitializable
 {
-    int Priority { get; set; }
+    int Priority { get; }
 }

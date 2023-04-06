@@ -25,4 +25,9 @@ public class Person
     public IReadOnlyCollection<ValueInstance<Property>> Properties { get; set; }
 
     public Role Role { get; set; }
+
+    public override string ToString()
+    {
+        return $"{LastName} {FirstName}, {Sex}, {Age}";
+    }
 }

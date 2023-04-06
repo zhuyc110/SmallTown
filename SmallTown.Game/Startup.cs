@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SmallTown.Engine.Function;
+using SmallTown.Function;
 using SmallTown.Game.Config;
 using SmallTown.Game.Entity;
 using SmallTown.Game.Event;
@@ -25,7 +26,9 @@ public static class Startup
                 .AddSingleton<IInitializable, IRoleManager>(config => config.GetService<IRoleManager>()!);
             services.AddSingleton<IInitializable, EntityManager>();
             services.AddSingleton<IInitializable, EventManager>();
-            services.AddSingleton<IInitializable, NameManager>();
+            services.AddSingleton<INameManager, NameManager>()
+                .AddSingleton<IInitializable, INameManager>(config => config.GetService<INameManager>()!);
+            services.AddSingleton<IInitializable, PersonGenerator>();
 
             services.Configure<GameSettings>(gameConfig);
         });

@@ -35,13 +35,13 @@ namespace SmallTown.Function
         {
             await base.StartAsync(cancellationToken);
 
-            var prioritized = _initializables.OfType<IPrioritizedInitializable>().OrderBy(x => x.Priority);
+            var prioritized = _initializables.OfType<IPrioritizedInitializable>();
             var others = _initializables.Except(prioritized);
             foreach (var initializable in others)
             {
                 await initializable.StartAsync();
             }
-            foreach (var initializable in prioritized)
+            foreach (var initializable in prioritized.OrderBy(x => x.Priority))
             {
                 await initializable.StartAsync();
             }
