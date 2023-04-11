@@ -13,7 +13,6 @@ public class PersonGenerator : IPrioritizedInitializable
     private readonly GameSettings _gameSettings;
     private readonly IRandom _random;
     private readonly INameManager _nameManager;
-    private int[] _randomes = Array.Empty<int>();
     private bool _started = false;
 
     public int Priority { get => 0; }
@@ -36,17 +35,29 @@ public class PersonGenerator : IPrioritizedInitializable
                 Id = index
             });
         }
-        _randomes = _random.Get(count).ToArray();
+
+        return this;
+    }
+
+    public PersonGenerator ConfigLastName()
+    {
+        var randomes = _random.GetFloat(_people.Count).ToArray();
+        for (var index = 0; index < _people.Count; index++)
+        {
+            var person = _people[index];
+            person.LastName = _nameManager.GetLastName(randomes[index]);
+        }
 
         return this;
     }
 
     public PersonGenerator ConfigFirstName()
     {
+        var randomes = _random.Get(_people.Count).ToArray();
         for (var index = 0; index < _people.Count; index++)
         {
             var person = _people[index];
-            person.FirstName = _nameManager.GetFirstName(_randomes.Choice(), person.Age, person.Sex);
+            person.FirstName = _nameManager.GetFirstName(randomes[index], person.Age, person.Sex);
         }
 
         return this;
@@ -54,10 +65,11 @@ public class PersonGenerator : IPrioritizedInitializable
 
     public PersonGenerator ConfigSex()
     {
+        var randomes = _random.Get(_people.Count).ToArray();
         for (var index = 0; index < _people.Count; index++)
         {
             var person = _people[index];
-            person.Sex = _randomes.Choice() > _gameSettings.People.SexRate ? Sex.Female : Sex.Male;
+            person.Sex = randomes[index] > _gameSettings.People.SexRate ? Sex.Female : Sex.Male;
         }
 
         return this;
@@ -65,12 +77,14 @@ public class PersonGenerator : IPrioritizedInitializable
 
     public PersonGenerator ConfigAge()
     {
+        var randomes = _random.Get(_people.Count).ToArray();
+
         for (var index = 0; index < _people.Count; index++)
         {
             var person = _people[index];
-            var rangeKey = _randomes[index] / 100f;
+            var rangeKey = randomes[index] / 100f;
             var rate = _gameSettings.People.AgeTable.OrderBy(x => x.Value - rangeKey).First(x => x.Value - rangeKey >= 0);
-            person.Age = rate.Key + _randomes[index] % 10;
+            person.Age = rate.Key + randomes[index] % 10;
         }
 
         return this;
@@ -79,14 +93,13 @@ public class PersonGenerator : IPrioritizedInitializable
     public IEnumerable<Person> Build()
     {
         _people.Sort((x, y) => x.Age - y.Age);
-        _randomes = Array.Empty<int>();
         _started = false;
         return _people;
     }
 
     public Task StartAsync()
     {
-        Start(1000).ConfigAge().ConfigSex().ConfigFirstName().Build();
+        Start(100).ConfigAge().ConfigSex().ConfigLastName().ConfigFirstName().Build();
 
         return Task.CompletedTask;
     }

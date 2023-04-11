@@ -9,5 +9,6 @@ using System.Threading.Tasks;
 namespace SmallTown.Game.Person.Name;
 public interface INameManager : IInitializable
 {
-    public string GetFirstName(int random, int age, Sex sex);
+    string GetFirstName(int random, int age, Sex sex);
+    string GetLastName(float random);
 }

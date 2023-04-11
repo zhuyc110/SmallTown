@@ -7,7 +7,13 @@ public interface IRandom
     int Next(int max = 101);
 
     /// <summary>
+    /// Returns a non-negative random single that is less than <paramref name="max"/>.
+    /// </summary>
+    float NextFloat(int max = 101);
+
+    /// <summary>
     /// Returns a collection of non-negative random integer that is less than 101.
     /// </summary>
     IList<int> Get(int count);
+    IList<float> GetFloat(int count);
 }
