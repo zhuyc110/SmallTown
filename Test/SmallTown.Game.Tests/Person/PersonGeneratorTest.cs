@@ -40,15 +40,17 @@ public class PersonGeneratorTest
     {
         _random = new Mock<IRandom>();
         _nameManager = new Mock<INameManager>();
+        _personalityManager = new Mock<IPersonalityManager>();
         var gameSettings = new Mock<IOptions<GameSettings>>();
         _gameSettings = new GameSettings { People = new PeopleSettings() };
         gameSettings.Setup(x => x.Value).Returns(_gameSettings);
 
-        _objectUnderTest = new PersonGenerator(gameSettings.Object, _random.Object, _nameManager.Object);
+        _objectUnderTest = new PersonGenerator(gameSettings.Object, _random.Object, _nameManager.Object, _personalityManager.Object);
     }
 
     private Mock<IRandom> _random;
     private Mock<INameManager> _nameManager;
+    private Mock<IPersonalityManager> _personalityManager;
     private GameSettings _gameSettings;
     private PersonGenerator _objectUnderTest;
 }
