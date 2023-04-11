@@ -1,5 +1,5 @@
 ﻿namespace SmallTown.Game.Person.Name;
-internal struct FirstName
+internal struct FirstNameValues
 {
     public int Age { get; set; }
 

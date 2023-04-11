@@ -4,15 +4,17 @@ namespace SmallTown.Game.Person
 {
     public class Personality : ReadableObjectBase
     {
-        private static IReadOnlyDictionary<int, string> _elements = new Dictionary<int, string>();
+        private static IReadOnlyDictionary<int, string>? _elements;
 
         internal IReadOnlyCollection<string> HighElements
         {
             get
             {
-                return _highElementIds.Select(x => _elements[x]).ToList();
+                return _highElementIds.Select(x => _elements![x]).ToList();
             }
         }
+
+        internal IReadOnlyCollection<int> HighElementIds => _highElementIds;
 
         private readonly int[] _highElementIds;
 

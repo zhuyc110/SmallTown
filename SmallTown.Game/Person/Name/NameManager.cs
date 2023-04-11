@@ -13,39 +13,21 @@ using System.Threading.Tasks;
 namespace SmallTown.Game.Person.Name;
 public class NameManager : DataReadingManagerBase, INameManager
 {
-    private const int EDGE_CASE = 95;
     private const int EXTENDED_VALUE = 100;
-    private IDictionary<float, string> _lastNameRateTable = new Dictionary<float, string>();
-    private ICollection<string> _extendedLastName = new List<string>();
-    private IDictionary<(int, Sex), string[]> _firstNameRateTable = new Dictionary<(int, Sex), string[]>();
-    private IDictionary<Sex, string[]> _extendedFirstNameTable = new Dictionary<Sex, string[]>();
+
+    private IReadOnlyDictionary<float, string> _lastNameRateTable = new Dictionary<float, string>();
+    private IReadOnlyCollection<string> _extendedLastName = new List<string>();
+    private IReadOnlyDictionary<(int, Sex), string[]> _firstNameRateTable = new Dictionary<(int, Sex), string[]>();
+    private IReadOnlyDictionary<Sex, string[]> _extendedFirstNameTable = new Dictionary<Sex, string[]>();
+
+    public IReadOnlyDictionary<float, string> LastNameRateTable => _lastNameRateTable;
+    public IReadOnlyCollection<string> ExtendedLastName => _extendedLastName;
+    public IReadOnlyDictionary<(int, Sex), string[]> FirstNameRateTable => _firstNameRateTable;
+    public IReadOnlyDictionary<Sex, string[]> ExtendedFirstNameTable => _extendedFirstNameTable;
 
     public NameManager(IAssetManager assetManager, ILanguageService languageService)
         : base(assetManager, languageService)
     {
-    }
-
-    public string GetFirstName(int random, int age, Sex sex)
-    {
-        var range = age / 10 * 10;
-        if (_firstNameRateTable.TryGetValue((range, sex), out var firstNames) && random < EDGE_CASE)
-        {
-            return firstNames.Choice();
-        }
-
-        var extendedNames = _extendedFirstNameTable[sex];
-        return extendedNames.Choice();
-    }
-
-    public string GetLastName(float random)
-    {
-        if (random < EDGE_CASE)
-        {
-            var target = _lastNameRateTable.Where(x => x.Key < random).MaxBy(x => x.Key);
-            return target.Value;
-        }
-
-        return _extendedLastName.Choice();
     }
 
     public async override Task StartAsync()
@@ -56,7 +38,7 @@ public class NameManager : DataReadingManagerBase, INameManager
         _extendedLastName = lastNameRateTable!.Where(x => x.Id == EXTENDED_VALUE).Single().Value.Split(' ');
 
         filePath = $"./Data/People/FirstName/{_languageService.CurrentLanguage}.json";
-        var firstNameRateTable = await _assetManager.LoadAndDeserialize<FirstName[]>(filePath);
+        var firstNameRateTable = await _assetManager.LoadAndDeserialize<FirstNameValues[]>(filePath);
         _firstNameRateTable = firstNameRateTable!.Where(x => x.Age != EXTENDED_VALUE).ToDictionary(x => (x.Age, x.Sex), x => x.Values);
         _extendedFirstNameTable = firstNameRateTable!.Where(x => x.Age == EXTENDED_VALUE).ToDictionary(x => x.Sex, x => x.Values);
     }

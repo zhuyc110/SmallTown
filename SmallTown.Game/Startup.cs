@@ -19,7 +19,8 @@ public static class Startup
 
         hostBuilder.ConfigureServices(services =>
         {
-            services.AddSingleton<IInitializable, PersonalityManager>();
+            services.AddSingleton<IPersonalityManager, PersonalityManager>()
+                .AddSingleton<IInitializable, IPersonalityManager>(config => config.GetService<IPersonalityManager>()!);
             services.AddSingleton<IInitializable, PropertyManager>();
             services.AddSingleton<IInitializable, RelationshipManager>();
             services.AddSingleton<IRoleManager, RoleManager>()

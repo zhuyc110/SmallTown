@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace SmallTown.Engine.Infrastructure;
 public static class EnumerableExtensions
 {
-    public static T Choice<T>(this ICollection<T> collection)
+    public static T Choice<T>(this IEnumerable<T> collection)
     {
-        var index = SmallRandom.NextNonNegative(collection.Count);
+        var index = SmallRandom.NextNonNegative(collection.Count());
         return collection.ElementAt(index);
     }
 }

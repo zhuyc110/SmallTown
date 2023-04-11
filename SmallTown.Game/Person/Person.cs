@@ -28,6 +28,6 @@ public class Person
 
     public override string ToString()
     {
-        return $"{LastName} {FirstName}, {Sex}, {Age}";
+        return $"{LastName} {FirstName}, {Sex}, {Age}, {Personality}";
     }
 }

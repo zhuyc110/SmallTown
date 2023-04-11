@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 namespace SmallTown.Game.Person.Name;
 public interface INameManager : IInitializable
 {
-    string GetFirstName(int random, int age, Sex sex);
-    string GetLastName(float random);
+    IReadOnlyDictionary<float, string> LastNameRateTable { get; }
+    IReadOnlyCollection<string> ExtendedLastName { get; }
+    IReadOnlyDictionary<(int, Sex), string[]> FirstNameRateTable { get; }
+    IReadOnlyDictionary<Sex, string[]> ExtendedFirstNameTable { get; }
 }
