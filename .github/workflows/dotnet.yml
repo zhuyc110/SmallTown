@@ -11,9 +11,7 @@ on:
 
 jobs:
   build:
-
     runs-on: windows-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
@@ -24,5 +22,21 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
+      
+  test:
+    runs-on: windows-latest
+    steps:
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: coverlet
+      uses: b3b00/coverlet-action@1.2.5
+      with: 
+        testProject: 'Test/**/*.csproj'
+        output: 'lcov.info'
+        outputFormat: 'lcov'
+        threshold: 80
+    - name: coveralls      
+      uses: coverallsapp/github-action@v1.1.1
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }} 
+        path-to-lcov: ${{ steps.coverlet.outputs.coverageFile}} 
