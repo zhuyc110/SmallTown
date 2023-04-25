@@ -18,24 +18,25 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.x
+        
     - name: Restore dependencies
       run: dotnet restore
+      
     - name: Build
       run: dotnet build --no-restore
       
-  test:
-    runs-on: windows-latest
-    steps:
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    - name: coverlet
+      
+    - name: Generate coverage report
       uses: b3b00/coverlet-action@1.2.5
       with: 
         testProject: 'Test/**/*.csproj'
         output: 'lcov.info'
         outputFormat: 'lcov'
         threshold: 80
-    - name: coveralls      
+        
+    - name: publish coverage report      
       uses: coverallsapp/github-action@v1.1.1
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }} 
